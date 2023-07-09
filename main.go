@@ -1,45 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-	"time"
-)
+import "fmt"
 
-type SliceTime []time.Time
-
-func (s SliceTime) Len() int {
-	return len(s)
-}
-
-func (s SliceTime) Less(i, j int) bool {
-	return s[i].Before(s[j])
-}
-
-func (s SliceTime) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
+func removestring(stringList []string, stringToRemove string) []string {
+	stringListLengs := len(stringList)
+	for i, ss := range stringList {
+		if ss == stringToRemove {
+			stringList[stringListLengs-1], stringList[i] = stringList[i], stringList[stringListLengs-1] //
+			return stringList[:stringListLengs-1]
+		}
+	}
+	return stringList
 }
 
 func main() {
-	// Створення масиву time.Time
-	myTimes := []time.Time{
-		time.Now(),
-		time.Now().AddDate(0, -1, 0),
-		time.Now().AddDate(0, 1, 0),
-	}
+	str := []string{"a", "b", "c", "d", "e"}
 
-	// Виведення масиву перед сортуванням
-	fmt.Println("Before sorting:")
-	for _, t := range myTimes {
-		fmt.Println(t)
-	}
+	strr := removestring(str, "c")
 
-	// Сортування масиву
-	sort.Sort(SliceTime(myTimes))
-
-	// Виведення масиву після сортування
-	fmt.Println("\nAfter sorting:")
-	for _, t := range myTimes {
-		fmt.Println(t)
-	}
+	fmt.Print(strr)
 }

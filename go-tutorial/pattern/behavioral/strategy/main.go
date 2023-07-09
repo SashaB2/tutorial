@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"time"
-	cache2 "tutorial/go-tutorial/pattern/strategy/cache"
-	calc2 "tutorial/go-tutorial/pattern/strategy/calc"
-	duck2 "tutorial/go-tutorial/pattern/strategy/duck"
+	cache3 "tutorial/go-tutorial/pattern/behavioral/strategy/cache"
+	calc2 "tutorial/go-tutorial/pattern/behavioral/strategy/calc"
+	duck2 "tutorial/go-tutorial/pattern/behavioral/strategy/duck"
 )
 
 func main() {
@@ -35,8 +35,8 @@ func main() {
 
 	//-------------------------------------------------------
 
-	fifo := &cache2.Fifo{}
-	cache := cache2.InitCache(fifo)
+	fifo := &cache3.Fifo{}
+	cache := cache3.InitCache(fifo)
 	cache.Add("0", map[string]time.Time{"0": time.Now()})
 	cache.Add("1", map[string]time.Time{"1": time.Now()})
 	cache.Add("2", map[string]time.Time{"2": time.Now()})
@@ -47,7 +47,7 @@ func main() {
 		fmt.Println("")
 	}
 
-	lru := &cache2.Lru{}
+	lru := &cache3.Lru{}
 	cache.SetEviction(lru)
 	cache.AddDefault("4", "4")
 	cache.AddDefault("5", "5")
